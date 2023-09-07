@@ -13,6 +13,8 @@ RUN apt-get update \
     iputils-ping \
     dnsutils \
     vim\
+    python-is-python3\
+    netcat\
     # ROS bridge server and related packages
     ros-noetic-rosbridge-server \
     --no-install-recommends \
