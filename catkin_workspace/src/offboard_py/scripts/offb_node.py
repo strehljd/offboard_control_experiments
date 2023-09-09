@@ -35,9 +35,9 @@ if __name__ == "__main__":
 
     pose = PoseStamped()
 
-    pose.pose.position.x = 0
-    pose.pose.position.y = 0
-    pose.pose.position.z = 2
+    pose.pose.position.x = 1
+    pose.pose.position.y = 1
+    pose.pose.position.z = 1
 
     # Send a few setpoints before starting
     for i in range(100):
@@ -47,14 +47,20 @@ if __name__ == "__main__":
         local_pos_pub.publish(pose)
         rate.sleep()
 
-    offb_set_mode = SetModeRequest()
-    offb_set_mode.custom_mode = 'OFFBOARD'
+    
 
     arm_cmd = CommandBoolRequest()
     arm_cmd.value = True
 
     last_req = rospy.Time.now()
+    # first set mode to POSITION to not fall down in case of any failure
+    offb_set_mode = SetModeRequest()
+    offb_set_mode.custom_mode = 'AUTO.LOITER'
+    if(set_mode_client.call(offb_set_mode).mode_sent == True):
+            rospy.loginfo("AUTO.LOITER' enabled")
 
+    offb_set_mode = SetModeRequest()
+    offb_set_mode.custom_mode = 'OFFBOARD'
     while(not rospy.is_shutdown()):
         if(current_state.mode != "OFFBOARD" and (rospy.Time.now() - last_req) > rospy.Duration(5.0)):
             if(set_mode_client.call(offb_set_mode).mode_sent == True):
