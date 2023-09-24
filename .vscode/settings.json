@@ -1,0 +1,12 @@
+{
+    "cmake.sourceDirectory": "/workspaces/offboard_control_experiments/catkin_workspace/src/offboard_py",
+
+    "python.autoComplete.extraPaths": [
+        "/workspaces/offboard_control_experiments/catkin_workspace/devel/lib/python3/dist-packages/",
+        "/opt/ros/noetic/lib/python3/dist-packages/"
+    ],
+    "python.analysis.extraPaths": [
+        "/workspaces/offboard_control_experiments/catkin_workspace/devel/lib/python3/dist-packages/",
+        "/opt/ros/noetic/lib/python3/dist-packages/"
+    ]
+}
